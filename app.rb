@@ -15,8 +15,15 @@ post '/login' do
   pass_arr = ["Admin", "skippy", "password"]
   counter = 0
   user_arr.each do |name|
-    if name == username && password[counter]
-      redirect '/calculator'
+
+    if username == name
+      if pass_arr.include?(password)
+        if user_arr.index(name) == pass_arr.index(password)
+         redirect '/calculator'
+         else 
+          redirect '/error'
+        end
+      end
     end
     counter = counter + 1
   end
