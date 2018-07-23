@@ -27,3 +27,11 @@ body
     margin: 25px;
     box-shadow: 5px 5px;
 }
+.names-pws
+{
+    width: 50%;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+    box-shadow: 5px 5px;
+}
