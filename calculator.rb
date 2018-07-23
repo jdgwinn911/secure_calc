@@ -1,3 +1,18 @@
+def work(op, num1, num2)
+    num1 = num1.to_i
+    num2 =num2.to_i
+    case op
+    when "add"
+        return add_num(num1, num2)
+    when "subtract"
+        return sub_num(num1, num2)
+    when "multiply"
+        return mult_num(num1, num2)
+    when "divide"
+        return divide_num(num1, num2)
+    end
+end
+
 def class_check(a, b)
     val = 0
     if a.is_a?(Integer) || a.is_a?(Float)
@@ -29,5 +44,9 @@ end
 
 def divide_num(a, b)
     unless class_check(a, b); return false; end
-    a/b 
+    if b == 0
+        return "you cannot divide by zero"
+    else
+         a/b 
+    end
 end

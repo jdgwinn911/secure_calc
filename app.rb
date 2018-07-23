@@ -1,5 +1,6 @@
 require 'sinatra'
-require_relative 'calculator.rb'
+require_relative "calculator.rb"
+
 
 enable :sessions
 
@@ -8,31 +9,56 @@ get '/' do
 end
 
 post '/login' do
-  user = params[:user_name]
-  pass = params[:password]
-  user_name = ENV['username'].split(' ') || ["admin"]
-  password = ENV['password'].split(' ') || ["admin"]
-   session[:uname] = user_name
-   session[:pwd] = password
-
-
-
-  if user == user_name.include(0) && pass == password.include(0)
-    redirect '/calculator'
-  elsif user == user_name.include(1) && pass == password.include(1)
-    redirect '/calculator'
-  elsif user == user_name.include(2) && pass == password.include(2)
-    redirect '/calculator'
-  elsif user != user_name.include(0) && user != user_name.include(1) && user != user_name.include(2) && pass != password.include(0) && pass != password.include(1) && pass != password.include(2)
+  username = params[:username]
+  password = params[:password]
+  user_arr = ["Admin", "josh", "user"]
+  pass_arr = ["Admin", "skippy", "password"]
+  counter = 0
+  user_arr.each do |name|
+    if name == username && password[counter]
+      redirect '/calculator'
+    end
+    counter = counter + 1
+  end
+  unless user_arr.include?(username)
     erb :login, locals: {error: "invalid username or password"}
   end
-    
+  unless pass_arr.include?(password)
+    erb :login, locals: {error: "invalid username or password"}
+  end
+  error = "invalid username or password"
 
 
 
-  
 end
 
 get '/calculator' do
-  erb :calculator
+  p session
+  val1 = session[:val1] || ""
+  val2 = session[:val2] || ""
+  operation = session[:operation] || ""
+  result = session[:result] || ""
+  p session
+   case operation
+  when "add"
+    operation = "+"
+  when "subtract"
+   operation = "-"
+  when "multiply"
+    operation = "*"
+  when "divide"
+    operation = "/"
+  end
+
+  erb :calculator, locals:{result: result, val1: val1, val2: val2, operation: operation}
+end
+
+post '/calculator' do 
+  session[:val1] = params[:calculatorbox1]
+  session[:val2] = params[:calculatorbox2]
+  session[:operation] = params[:math]
+
+
+  session[:result] = work(session[:operation], params[:calculatorbox1], params[:calculatorbox2])
+  redirect '/calculator'
 end

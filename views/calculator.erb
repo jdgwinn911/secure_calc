@@ -4,16 +4,48 @@
         <script type="text/javascript" src="js/scripts.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
-
+    <center>
     <h1>Calculator</h1>
 
     </head>
+    
 
-    <%=yield%>
-    <center>
-    <input type="text" name="calculator" placeholder="calculator">
+   <body>
+   <div class="body">
+    <form action="calculator" method="post">
+    <div class="boxes">
+    <input type="text" name="calculatorbox1" placeholder="number 1">
+    <input type="text" name="calculatorbox2" placeholder="number 2"><br>
+  <input type="radio" name="math" value="add"> Add<br>
+  <input type="radio" name="math" value="subtract"> Subtract<br>
+  <input type="radio" name="math" value="multiply"> Multiply<br>
+  <input type="radio" name="math" value="divide"> Divide<br>
+   <input type="submit" name="calculate" value="calculate">
+   </div>
+   </div>
+    <div class="answer">
+		    
+            <h3>
+			
+                        
+			         
 
-   <body background="images/cacly.jpg" align="middle">
+			    <%= val1%> <%= operation%> <%= val2%> = <%= result%>
+			        
+                    
+
+                
+			</h3> 
+
+     </div>
+     </form>
+		    
+
+			
+
+
+
+
 
     </body>
     </center>
