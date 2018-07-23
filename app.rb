@@ -21,15 +21,22 @@ post '/login' do
     counter = counter + 1
   end
   unless user_arr.include?(username)
-    erb :login, locals: {error: "invalid username or password"}
+    redirect '/error'
+    # erb :error, locals: {error: "invalid username or password"}
   end
   unless pass_arr.include?(password)
-    erb :login, locals: {error: "invalid username or password"}
+    redirect '/error'
+    # erb :error, locals: {error: "invalid username or password"}
   end
   error = "invalid username or password"
 
+end
+get '/error' do
+  erb :error, locals: {error: "invalid username or password"}
+end
 
-
+post '/error' do
+redirect '/login'
 end
 
 get '/calculator' do
@@ -41,7 +48,7 @@ get '/calculator' do
   p session
    case operation
   when "add"
-    operation = "+"
+    operation = "+" 
   when "subtract"
    operation = "-"
   when "multiply"
