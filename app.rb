@@ -35,6 +35,7 @@ post '/login' do
 end
 
 get '/calculator' do
+  erb :calculator
 
 
    
