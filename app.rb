@@ -10,8 +10,8 @@ end
 post '/login' do
   user = params[:user_name]
   pass = params[:password]
-  user_name = ENV['username'].split(' ')
-  password = ENV['password'].split(' ')
+  user_name = ENV['username'].split(' ') || ["admin"]
+  password = ENV['password'].split(' ') || ["admin"]
    session[:uname] = user_name
    session[:pwd] = password
 
@@ -35,7 +35,4 @@ end
 
 get '/calculator' do
   erb :calculator
-
-
-   
 end
