@@ -4,7 +4,7 @@ require_relative 'calculator.rb'
 enable :sessions
 
 get '/' do
-  erb :login
+  erb :login, locals: {error: ""}
 end
 
 post '/login' do
@@ -24,8 +24,7 @@ post '/login' do
   elsif user == user_name.include(2) && pass == password.include(2)
     redirect '/calculator'
   elsif user != user_name.include(0) && user != user_name.include(1) && user != user_name.include(2) && pass != password.include(0) && pass != password.include(1) && pass != password.include(2)
-    error = "invalid username or password"
-    puts error
+    erb :login, locals: {error: "invalid username or password"}
   end
     
 
